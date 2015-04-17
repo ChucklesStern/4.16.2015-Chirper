@@ -1,4 +1,5 @@
-﻿var firebaseUrl = "https://chuckchirpdatabase.firebaseio.com/"
+﻿var firebaseUrl = "https://chuckchirpdatabase.firebaseio.com/";
+
 var friend = function (name/*, email, phone, date */) {
     this.name = name;
     /*   this.email = email;
@@ -106,9 +107,9 @@ getContacts();
 
 
 var firebaseUrl = "https://chuckchirpdatabase.firebaseio.com/"
-var tweet = function (text, person, date) {
+var tweet = function (text, date) {
     this.text = text;
-    this.person = person;
+    this.person = "Chuck Stern";
     this.date = date; 
 }
 var tweets = [];
@@ -123,12 +124,12 @@ var addTweet = function (i) {
     //here we use JQUERY Bling $ and ID hastags (#) for the first time. Note that what is expressed below for the variable name is the same as saying var name = document.getElementById('inputName').value;
 
     var text = $('#inputTweet').val();
-    var person = $('tweetersName').val();
+    
     /*    var email = $('#inputEmail').val();
         var phone = $('#inputPhone').val(); */
         var findHours = new Date();
         var date = findHours.getTime(); 
-        var addTweet = new tweet(text, person, date);
+        var addTweet = new tweet(text, date);
         postTweets(addTweet, i);
     //Clears out the inputs by setting the string value to nothing
         $('#inputTweet').val(''); $('#tweetersName').val('');/* $('#inputEmail').val(''); $('#inputPhone').val(''); */
@@ -157,7 +158,7 @@ var PrintTweets = function () {
 
 var postTweets = function (data) {
     var request = new XMLHttpRequest();
-    request.open('POST', firebaseUrl + '/tweets' + '/.json', true);
+    request.open('POST', firebaseUrl + '/bigbird' + '/.json', true);
     request.onload = function () {
         if (this.status < 400 && this.status >= 200) {
             var response = JSON.parse(this.response);
@@ -176,7 +177,7 @@ var postTweets = function (data) {
 
 var getTweets = function () {
     var request = new XMLHttpRequest();
-    request.open('GET', firebaseUrl + '/tweets' + '/.json', true);
+    request.open('GET', firebaseUrl + '/bigbird' + '/.json', true);
     request.onload = function () {
         if (this.status >= 200 && this.status < 400) {
             var response = JSON.parse(this.response);
@@ -193,7 +194,7 @@ var getTweets = function () {
 }
 var deleteTweet = function (i) {
     var request = new XMLHttpRequest();
-    request.open('DELETE', firebaseUrl + '/tweets' + '/.json', true);
+    request.open('DELETE', firebaseUrl + '/bigbird' + '/.json', true);
     request.onload = function () {
         If(this.status >= 200 && this.status < 400); {
             tweets.splice(i, 1);
